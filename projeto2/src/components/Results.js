@@ -1,6 +1,26 @@
 import React from 'react';
 
-function Results({ agentInfo, mapInfo, }) {
+function Results({ agentInfo, mapInfo }) {
+  if (Array.isArray(agentInfo) && Array.isArray(mapInfo)) {
+    return (
+      <div>
+        {mapInfo.map((map) => (
+          <div key={map.displayName}>
+            <h2>{map.displayName}</h2>
+            <p>{map.narrativeDescription}</p>
+            <img src={map.splash} alt={map.displayName} />
+          </div>
+        ))}
+        {agentInfo.map((agent) => (
+          <div key={agent.displayName}>
+            <h2>{agent.displayName}</h2>
+            <p>{agent.description}</p>
+            <img src={agent.bustPortrait} alt={agent.displayName} />
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   if (agentInfo) {
     return (

@@ -23,8 +23,7 @@ function App() {
       if (!agentTerm && !mapTerm) {
         const agents = await fetchAllAgents();
         const maps = await fetchAllMaps();
-        displayAllAgents(agents);
-        displayAllMaps(maps);
+        displayAllData(agents, maps);
       } else {
         if (agentTerm) {
           const agentData = await fetchAgentInfo(agentTerm);
@@ -47,15 +46,12 @@ function App() {
     setError('');
   };
 
-  const displayAllAgents = (agents) => {
+  const displayAllData = (agents, maps) => {
     setAgentInfo(agents);
+    setMapInfo(maps);
     setError('');
   };
-
-  const displayAllMaps = (maps) => {
-    setMapInfo(maps);
-  };
-
+  
   const displayAgentInfo = (agentData) => {
     setAgentInfo(agentData);
     setMapInfo(null);
@@ -76,7 +72,7 @@ function App() {
     <div>
       <h1>Pesquisa Valorant</h1>
       {/* Suspense envolvendo os componentes carregados de forma preguiçosa */}
-      <Suspense fallback={<div>Carregando...</div>}>
+      <Suspense fallback={<div>Carregando</div>}>
         <SearchForm onSearch={handleSearch} />
         <Results agentInfo={agentInfo} mapInfo={mapInfo} error={error} />
         <ErrorMessage message={error} />
