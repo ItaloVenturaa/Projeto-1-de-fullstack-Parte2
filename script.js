@@ -37,6 +37,7 @@ document.getElementById('searchForm').addEventListener('submit', async function(
     }
 });
 
+
 async function fetchAllAgents() {
     const response = await fetch(API_URL + 'agents');
     const data = await response.json();
