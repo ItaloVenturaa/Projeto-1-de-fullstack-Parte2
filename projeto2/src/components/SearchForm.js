@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import '../styles/styles.css';
 
-function SearchForm({ onSearch }) {
+function SearchForm({ onSearch, displayError }) {
   const [agentInput, setAgentInput] = useState('');
   const [mapInput, setMapInput] = useState('');
+  const [error, setError] = useState(null); // Mudança aqui: inicialize o estado de erro como null
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -12,6 +14,7 @@ function SearchForm({ onSearch }) {
       }
       onSearch(agentInput, mapInput);
     } catch (error) {
+      setError(error); // Mudança aqui: defina o estado de erro com o objeto de erro
       console.error(error);
     }
   };
@@ -33,6 +36,7 @@ function SearchForm({ onSearch }) {
         onChange={(e) => setMapInput(e.target.value)}
       />
       <button type="submit">Pesquisar</button>
+      {error && <p className="error">{error.message}</p>}
     </form>
   );
 }

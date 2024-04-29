@@ -1,3 +1,4 @@
+
 const API_URL = 'https://valorant-api.com/v1/';
 
 async function fetchAgentInfo(agentName) {
@@ -56,4 +57,7 @@ async function fetchAllMaps() {
     return data.data;
 }
 
+
+
 export { fetchAgentInfo, fetchMapInfo, fetchAllAgents, fetchAllMaps };
+

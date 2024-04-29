@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/styles.css';
 
 function Results({ agentInfo, mapInfo }) {
   if (Array.isArray(agentInfo) && Array.isArray(mapInfo)) {

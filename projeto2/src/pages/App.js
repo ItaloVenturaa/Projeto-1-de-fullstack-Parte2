@@ -1,6 +1,8 @@
 import React, { useState, Suspense } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { fetchAgentInfo, fetchMapInfo, fetchAllAgents, fetchAllMaps} from '../services/api';
+import { validateSearchInput } from '../utils/validation'; 
+import '../styles/styles.css';
+import { fetchAgentInfo, fetchMapInfo, fetchAllAgents, fetchAllMaps } from '../services/api';
 
 const SearchForm = React.lazy(() => import('../components/SearchForm'));
 const Results = React.lazy(() => import('../components/Results'));
@@ -14,8 +16,9 @@ function App() {
   const handleSearch = async (agentTerm, mapTerm) => {
     try {
       if (agentTerm && mapTerm) {
-        throw new Error('Preencha apenas um dos campos: Agente ou Mapa.');
-        
+        validateSearchInput(agentTerm, mapTerm);
+        displayError('Preencha apenas um dos campos: Agente ou Mapa.');
+        return; 
       }
 
       clearResults();
@@ -71,7 +74,6 @@ function App() {
   return (
     <div>
       <h1>Pesquisa Valorant</h1>
-      {/* Suspense envolvendo os componentes carregados de forma preguiçosa */}
       <Suspense fallback={<div>Carregando</div>}>
         <SearchForm onSearch={handleSearch} />
         <Results agentInfo={agentInfo} mapInfo={mapInfo} error={error} />
