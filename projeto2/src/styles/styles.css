@@ -24,6 +24,7 @@ form {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 .agent, .map {
@@ -59,6 +60,7 @@ button:hover {
 }
 
 input[type="text"] {
+    margin: 10px;
     width: 200px;
     padding: 8px;
     border: 1px solid #ccc;

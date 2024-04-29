@@ -4,17 +4,18 @@ import '../styles/styles.css';
 function SearchForm({ onSearch, displayError }) {
   const [agentInput, setAgentInput] = useState('');
   const [mapInput, setMapInput] = useState('');
-  const [error, setError] = useState(null); // Mudança aqui: inicialize o estado de erro como null
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      setError(null); 
       if (agentInput && mapInput) {
         throw new Error('Preencha apenas um dos campos: Agente ou Mapa.');
       }
       onSearch(agentInput, mapInput);
     } catch (error) {
-      setError(error); // Mudança aqui: defina o estado de erro com o objeto de erro
+      setError(error); 
       console.error(error);
     }
   };
