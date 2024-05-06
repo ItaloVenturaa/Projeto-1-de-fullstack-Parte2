@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form, Button, Alert } from 'react-bootstrap';
 import '../styles/styles.css';
 
 function SearchForm({ onSearch, displayError }) {
@@ -21,24 +22,28 @@ function SearchForm({ onSearch, displayError }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="agentInput">Pesquisar Agente:</label>
-      <input
-        type="text"
-        id="agentInput"
-        value={agentInput}
-        onChange={(e) => setAgentInput(e.target.value)}
-      />
-      <label htmlFor="mapInput">Pesquisar Mapa:</label>
-      <input
-        type="text"
-        id="mapInput"
-        value={mapInput}
-        onChange={(e) => setMapInput(e.target.value)}
-      />
-      <button type="submit">Pesquisar</button>
-      {error && <p className="error">{error.message}</p>}
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="agentInput">
+        <Form.Label>Pesquisar Agente:</Form.Label>
+        <Form.Control
+          type="text"
+          value={agentInput}
+          onChange={(e) => setAgentInput(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group controlId="mapInput">
+        <Form.Label>Pesquisar Mapa:</Form.Label>
+        <Form.Control
+          type="text"
+          value={mapInput}
+          onChange={(e) => setMapInput(e.target.value)}
+        />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Pesquisar
+      </Button>
+      {error && <Alert variant="danger">{error.message}</Alert>}
+    </Form>
   );
 }
 

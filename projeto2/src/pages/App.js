@@ -1,5 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from 'react-bootstrap'; // Importe os componentes do React-Bootstrap necessários
 import { validateSearchInput } from '../utils/validation'; 
 import '../styles/styles.css';
 import { fetchAgentInfo, fetchMapInfo, fetchAllAgents, fetchAllMaps } from '../services/api';
@@ -72,14 +73,22 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Pesquisa Valorant</h1>
-      <Suspense fallback={<div>Carregando</div>}>
-        <SearchForm onSearch={handleSearch} />
-        <Results agentInfo={agentInfo} mapInfo={mapInfo} error={error} />
-        <ErrorMessage message={error} />
-      </Suspense>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <h1>Pesquisa Valorant</h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Suspense fallback={<div>Carregando</div>}>
+            <SearchForm onSearch={handleSearch} />
+            <Results agentInfo={agentInfo} mapInfo={mapInfo} error={error} />
+            <ErrorMessage message={error} />
+          </Suspense>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
