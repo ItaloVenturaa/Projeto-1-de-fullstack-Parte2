@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import '../styles/styles.css';
 
-function SearchForm({ onSearch, displayError }) {
+function SearchForm({ onSearch }) {
   const [agentInput, setAgentInput] = useState('');
   const [mapInput, setMapInput] = useState('');
   const [error, setError] = useState(null);

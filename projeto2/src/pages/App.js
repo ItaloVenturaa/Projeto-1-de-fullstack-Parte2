@@ -16,14 +16,19 @@ function App() {
 
   const handleSearch = async (agentTerm, mapTerm) => {
     try {
+      if (!agentTerm && !mapTerm) {
+        displayError('Campos vazios');
+        return;
+      }
+  
       if (agentTerm && mapTerm) {
         validateSearchInput(agentTerm, mapTerm);
         displayError('Preencha apenas um dos campos: Agente ou Mapa.');
-        return; 
+        return;
       }
-
+  
       clearResults();
-
+  
       if (!agentTerm && !mapTerm) {
         const agents = await fetchAllAgents();
         const maps = await fetchAllMaps();
@@ -43,6 +48,7 @@ function App() {
       displayError(error.message);
     }
   };
+  
 
   const clearResults = () => {
     setAgentInfo(null);
