@@ -6,7 +6,7 @@ import '../styles/styles.css';
 const SearchForm = React.lazy(() => import('../components/SearchForm'));
 const Results = React.lazy(() => import('../components/Results'));
 const ErrorMessage = React.lazy(() => import('../components/ErrorMessage'));
-
+//colocando esse comentari apenas para atualizar o git-pages no commit (teste)
 function App() {
   return (
     <SearchProvider>
