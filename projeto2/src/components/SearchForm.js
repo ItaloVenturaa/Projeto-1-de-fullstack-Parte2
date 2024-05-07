@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap'; //biblioteca react-bootstrap
+import { useSearch } from '../contexts/SearchContext';
 import '../styles/styles.css';
 
-function SearchForm({ onSearch }) {
+function SearchForm() {
+  const { handleSearch } = useSearch();
   const [agentInput, setAgentInput] = useState('');
   const [mapInput, setMapInput] = useState('');
   const [error, setError] = useState(null);
@@ -10,13 +12,10 @@ function SearchForm({ onSearch }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      setError(null); 
-      if (agentInput && mapInput) {
-        throw new Error('Preencha apenas um dos campos: Agente ou Mapa.');
-      }
-      onSearch(agentInput, mapInput);
+      setError(null);
+      handleSearch(agentInput, mapInput);
     } catch (error) {
-      setError(error); 
+      setError(error.message); 
       console.error(error);
     }
   };
@@ -42,7 +41,8 @@ function SearchForm({ onSearch }) {
       <Button variant="primary" type="submit">
         Pesquisar
       </Button>
-      {error && <Alert variant="danger">{error.message}</Alert>}
+      <br/> 
+      {error && <p className="error">{error}</p>}
     </Form>
   );
 }

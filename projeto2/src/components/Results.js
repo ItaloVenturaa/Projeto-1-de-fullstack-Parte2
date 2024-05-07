@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSearch } from '../contexts/SearchContext'; 
 import '../styles/styles.css';
 
-function Results({ agentInfo, mapInfo }) {
+function Results() {
+  const { agentInfo, mapInfo } = useSearch(); //hook 
+
   if (Array.isArray(agentInfo) && Array.isArray(mapInfo)) {
     return (
       <div>

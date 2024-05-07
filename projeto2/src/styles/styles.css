@@ -69,6 +69,6 @@ input[type="text"] {
 }
 
 .error {
-    color: #b81414;
+    color: #000080;
     font-weight: bold;
 }

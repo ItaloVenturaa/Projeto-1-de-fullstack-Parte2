@@ -1,4 +1,3 @@
-
 const API_URL = 'https://valorant-api.com/v1/';
 
 async function fetchAgentInfo(agentName) {
