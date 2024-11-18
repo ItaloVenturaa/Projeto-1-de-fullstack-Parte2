@@ -23,12 +23,12 @@ Para rodar o projeto localmente, siga os passos abaixo:
 ```bash  
 git clone https://github.com/ItaloVenturaa/Projeto-1-de-fullstack-Parte2.git  
 cd projeto2  
-
+```
 ### 2. Instale as dependências:
-npm install
+```npm install```
 
 ### 3. Inicie o servidor de desenvolvimento:
-npm start
+```npm start```
 Acesse http://localhost:3000 para visualizar a aplicação no navegador.
 
 ## Scripts Disponíveis  
