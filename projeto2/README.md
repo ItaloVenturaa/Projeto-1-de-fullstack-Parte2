@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# Projeto 1 de Programação Web Fullstack  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descrição  
+Este projeto foi desenvolvido como parte da disciplina **Programação Web Fullstack**, utilizando **React.js** e a API JSON aberta [Valorant API](https://valorant-api.com/). Trata-se de uma aplicação do tipo **SPA (Single Page Application)**, que consome dados via AJAX e implementa o hook `lazy` para otimização de carregamento.  
 
-## Available Scripts
+## Tecnologias Utilizadas  
+- **React.js**  
+- **Bootstrap**  
+- **React Lazy**  
+- **Valorant API**  
 
-In the project directory, you can run:
+## Funcionalidades  
+- Busca de dados diretamente da API Valorant.  
+- Validação de campos obrigatórios na busca.  
+- Exibição de mensagens de erro em casos de validação inválida.  
+- Divisão de código utilizando `React.lazy` para carregamento otimizado de componentes.  
 
-### `npm start`
+## Instalação e Configuração  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Para rodar o projeto localmente, siga os passos abaixo:  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. Clone este repositório:  
+```bash  
+git clone https://github.com/ItaloVenturaa/Projeto-1-de-fullstack-Parte2.git  
+cd projeto2  
 
-### `npm test`
+### 2. Instale as dependências:
+npm install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. Inicie o servidor de desenvolvimento:
+npm start
+Acesse http://localhost:3000 para visualizar a aplicação no navegador.
 
-### `npm run build`
+## Scripts Disponíveis  
+- `npm start`: Executa a aplicação no modo de desenvolvimento.  
+- `npm test`: Executa os testes configurados.  
+- `npm run build`: Gera a versão otimizada para produção no diretório `build`.  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Estrutura do Projeto  
+- **`src/pages/App.js`**: Componente principal da aplicação.  
+- **`src/styles/styles.css`**: Estilos personalizados da aplicação.  
+- **`src/components/`**: Componentes reutilizáveis e específicos da aplicação.  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Observação  
+Este projeto foi baseado no Projeto 1 do semestre anterior e será utilizado como base para o desenvolvimento do projeto final nesta disciplina.  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Autor  
+- **Ítalo Pereira Ventura**  
+  - RA: 2467259  
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Links Importantes  
+- **Repositório do projeto**: [GitHub](https://github.com/ItaloVenturaa/Projeto-1-de-fullstack-Parte2/tree/master/projeto2)  
+- **API Utilizada**: [Valorant API](https://valorant-api.com/)  
