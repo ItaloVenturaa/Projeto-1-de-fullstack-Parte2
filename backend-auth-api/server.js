@@ -4,8 +4,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); 
 const dotenv = require('dotenv'); 
-const verifyToken = require('./middleware/authMiddleware'); 
-
+const { protect } = require('./middleware/authMiddleware');
+const bcrypt = require('bcryptjs');
 dotenv.config(); // Carrega variáveis do .env
 
 const app = express();
@@ -23,33 +23,31 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch(err => console.error("🔴 Erro ao conectar:", err));
 
 
-const User = mongoose.model('User', new mongoose.Schema({
-  username: String,
-  password: String
-}));
-
-const Data = mongoose.model('Data', new mongoose.Schema({
-  name: String,
-  description: String
-}));
+const User = require('./models/User');
+const Data = require('./models/Data');
 
 
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  
-  const user = await User.findOne({ username, password });
-  if (!user) {
+  const user = await User.findOne({ username });
+
+  if (!user || !(await bcrypt.compare(password, user.password))) {
     return res.status(401).json({ message: 'Usuário ou senha inválidos!' });
   }
 
-  const token = jwt.sign({ username: user.username }, SECRET_KEY, { expiresIn: '1h' });
+  const token = jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: '1h' });
   res.json({ token, username: user.username });
 });
 
-app.get('/search', verifyToken, async (req, res) => {
-  const results = await Data.find(); 
+app.get('/search', (req, res, next) => {
+  console.log('Middleware test passou');
+  next();
+}, async (req, res) => {
+  const results = await Data.find();
   res.json({ results });
 });
+
+
 
 
 app.post('/insert', verifyToken, async (req, res) => {
