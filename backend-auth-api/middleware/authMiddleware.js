@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 
-const SECRET_KEY = 'seu_segredo_super_secreto'; // Use uma chave mais segura no .env
+const SECRET_KEY = 'seu_segredo_super_secreto'; 
 
-// Middleware para verificar o token
+
 const verifyToken = (req, res, next) => {
   const token = req.headers['authorization'];
 
@@ -14,8 +14,8 @@ const verifyToken = (req, res, next) => {
     if (err) {
       return res.status(403).json({ message: 'Token inválido ou expirado!' });
     }
-    req.user = decoded; // Adiciona os dados do usuário na requisição
-    next(); // Permite que a requisição continue
+    req.user = decoded; 
+    next(); 
   });
 };
 

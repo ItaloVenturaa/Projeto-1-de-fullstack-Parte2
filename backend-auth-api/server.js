@@ -13,13 +13,13 @@ app.use(bodyParser.json());
 const SECRET_KEY = 'seu_segredo_super_secreto';
 const DATA_FILE = path.join(__dirname, 'data.json');
 
-// Função para ler o data.json
+
 const readData = () => {
   const data = fs.readFileSync(DATA_FILE);
   return JSON.parse(data);
 };
 
-// Rota de login (gera token)
+
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
   const { users } = readData();
@@ -33,13 +33,12 @@ app.post('/login', (req, res) => {
   res.json({ token, username: user.username });
 });
 
-// 🔒 Rota protegida de busca
+
 app.get('/search', verifyToken, (req, res) => {
   const { data } = readData();
   res.json({ results: data });
 });
 
-// 🔒 Rota protegida de inserção
 app.post('/insert', verifyToken, (req, res) => {
   const { name, description } = req.body;
   if (!name || !description) {
@@ -54,7 +53,7 @@ app.post('/insert', verifyToken, (req, res) => {
   res.json({ message: 'Dado inserido com sucesso!', item: newItem });
 });
 
-// Iniciar servidor
-app.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000');
+
+app.listen(3001, () => {
+  console.log('Servidor rodando na porta 3001');
 });

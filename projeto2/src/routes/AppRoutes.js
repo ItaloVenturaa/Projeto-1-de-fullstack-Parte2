@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import LoginPage from '../pages/LoginPage';
-import HomePage from '../pages/HomePage'; // Exemplo de página protegida
+import HomePage from '../pages/HomePage'; 
 
 const PrivateRoute = ({ element }) => {
   const { token } = useAuth();

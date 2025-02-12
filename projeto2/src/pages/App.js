@@ -1,21 +1,27 @@
-import React, { Suspense } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col } from 'react-bootstrap';
-import { SearchProvider } from '../contexts/SearchContext'; 
-import { AuthProvider } from '../context/AuthContext'; 
-import AppRoutes from '../routes/AppRoutes';
-import '../styles/styles.css';
+import React, { Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col } from "react-bootstrap";
+import { SearchProvider } from "../contexts/SearchContext";
+import { AuthProvider, useAuth } from "../contexts/AuthContext";
+import "../styles/styles.css";
 
-const SearchForm = React.lazy(() => import('../components/SearchForm'));
-const Results = React.lazy(() => import('../components/Results'));
-const ErrorMessage = React.lazy(() => import('../components/ErrorMessage'));
+const Login = React.lazy(() => import("../pages/Login"));
+const SearchForm = React.lazy(() => import("../components/SearchForm"));
+const Results = React.lazy(() => import("../components/Results"));
+const ErrorMessage = React.lazy(() => import("../components/ErrorMessage"));
+
+// Proteção de rota - apenas usuários logados acessam
+const PrivateRoute = ({ children }) => {
+  const { token } = useAuth();
+  return token ? children : <Navigate to="/login" />;
+};
 
 function App() {
   return (
-    <AuthProvider> {/* Envolve o app com o contexto de autenticação */}
+    <AuthProvider>
       <SearchProvider>
-        <Router> {/* Gerencia a navegação */}
+        <Router>
           <Container>
             <Row>
               <Col>
@@ -25,13 +31,23 @@ function App() {
             <Row>
               <Col>
                 <Suspense fallback={<div>Carregando...</div>}>
-                  <SearchForm />
-                  <Results />
-                  <ErrorMessage />
+                  <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route
+                      path="/search"
+                      element={
+                        <PrivateRoute>
+                          <SearchForm />
+                          <Results />
+                          <ErrorMessage />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route path="*" element={<Navigate to="/login" />} />
+                  </Routes>
                 </Suspense>
               </Col>
             </Row>
-            <AppRoutes /> {/* Renderiza as rotas */}
           </Container>
         </Router>
       </SearchProvider>
