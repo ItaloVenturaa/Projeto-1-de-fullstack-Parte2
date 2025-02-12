@@ -51,3 +51,4 @@ Este projeto foi baseado no Projeto 1 do semestre anterior e será utilizado com
 ## Links Importantes  
 - **Repositório do projeto**: [GitHub](https://github.com/ItaloVenturaa/Projeto-1-de-fullstack-Parte2/tree/master/projeto2)  
 - **API Utilizada**: [Valorant API](https://valorant-api.com/)  
+
