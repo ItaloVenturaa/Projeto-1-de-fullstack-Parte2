@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "1234"
+    },
+    {
+      "username": "user1",
+      "password": "senha123"
+    }
+  ],
+  "data": [
+    {
+      "id": 1,
+      "name": "Exemplo 1",
+      "description": "Descrição do item 1"
+    },
+    {
+      "id": 2,
+      "name": "Exemplo 2",
+      "description": "Descrição do item 2"
+    },
+    {
+      "id": 3,
+      "name": "Novo Item",
+      "description": "Descrição do novo item"
+    }
+  ]
+}
