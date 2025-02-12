@@ -1,22 +1,30 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
-const SECRET_KEY = 'seu_segredo_super_secreto'; 
+const protect = async (req, res, next) => {
+    let token;
 
+    if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+        try {
+            token = req.headers.authorization.split(" ")[1];
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = await User.findById(decoded.id).select("-password");
 
-const verifyToken = (req, res, next) => {
-  const token = req.headers['authorization'];
-
-  if (!token) {
-    return res.status(401).json({ message: 'Acesso negado! Token não fornecido.' });
-  }
-
-  jwt.verify(token, SECRET_KEY, (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ message: 'Token inválido ou expirado!' });
+            next();
+        } catch (error) {
+            res.status(401).json({ message: "Não autorizado, token inválido" });
+        }
+    } else {
+        res.status(401).json({ message: "Não autorizado, sem token" });
     }
-    req.user = decoded; 
-    next(); 
-  });
 };
 
-module.exports = verifyToken;
+const isAdmin = (req, res, next) => {
+    if (req.user && req.user.role === "admin") {
+        next();
+    } else {
+        res.status(403).json({ message: "Acesso negado. Apenas administradores podem acessar." });
+    }
+};
+
+module.exports = { protect, isAdmin };
