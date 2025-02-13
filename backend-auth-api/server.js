@@ -48,18 +48,52 @@ app.get('/search', (req, res, next) => {
 });
 
 
-
-
-app.post('/insert', verifyToken, async (req, res) => {
+app.post('/insert', async (req, res) => {
   const { name, description } = req.body;
   if (!name || !description) {
     return res.status(400).json({ message: 'Nome e descrição são obrigatórios!' });
   }
 
   const newItem = new Data({ name, description });
-  await newItem.save(); 
+  await newItem.save();
 
   res.json({ message: 'Dado inserido com sucesso!', item: newItem });
+});
+
+// Rota para listar todos os itens
+app.get('/list', protect, async (req, res) => {
+  try {
+    const items = await Data.find(); // Obtém todos os itens da coleção 'Data'
+    res.json({ items }); // Retorna os itens
+  } catch (err) {
+    res.status(500).json({ message: 'Erro ao listar os itens', error: err.message });
+  }
+});
+
+
+app.post('/register', async (req, res) => {
+  const { username, password, role } = req.body;
+
+  // Verifica se o usuário já existe
+  const userExists = await User.findOne({ username });
+  if (userExists) {
+    return res.status(400).json({ message: 'Usuário já existe!' });
+  }
+
+  // Cria um novo usuário
+  const newUser = new User({
+    username,
+    password,
+    role
+  });
+
+  try {
+    // Salva o novo usuário no banco de dados
+    await newUser.save();
+    res.status(201).json({ message: 'Usuário criado com sucesso!' });
+  } catch (err) {
+    res.status(500).json({ message: 'Erro ao criar usuário', error: err.message });
+  }
 });
 
 
